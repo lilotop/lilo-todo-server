@@ -1,0 +1,24 @@
+[
+  {
+    "title": "Feed the dog",
+    "description": "Don't forget to feed the little guy"
+  },
+  {
+    "title": "Call mom",
+    "description": "Reminder her about the party"
+  },
+  {
+    "title": "Schedule the party",
+    "priority": "high",
+    "done": true
+  },
+  {
+    "title": "Arrange paperwork",
+    "description": "Divide into folders, fill out forms, send letters",
+    "priority": "low"
+  },
+  {
+    "title": "Buy storage boxes",
+    "done": true
+  }
+]
