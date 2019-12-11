@@ -13,13 +13,10 @@ let TodoSchema = mongoose.Schema({
             maxlength: [500, 'Description cannot exceed 500 characters']
         },
         priority: {
-            type: [String],
-            enum: [
-                'high',
-                'normal',
-                'low',
-            ],
-            default: 'normal'
+            type: Number,
+            min: [1, 'Priority start at 1 (highest)'],
+            max: [3, 'Priority ends at 3 (lowest)'],
+            default: 2
         },
         done: {
             type: Boolean,

@@ -9,13 +9,13 @@
   },
   {
     "title": "Schedule the party",
-    "priority": "high",
+    "priority": 1,
     "done": true
   },
   {
     "title": "Arrange paperwork",
     "description": "Divide into folders, fill out forms, send letters",
-    "priority": "low"
+    "priority": 3
   },
   {
     "title": "Buy storage boxes",
