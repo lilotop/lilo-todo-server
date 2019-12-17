@@ -5,6 +5,7 @@ let dotenv = require('dotenv');
 dotenv.config({ path: './config/config.env' });
 
 let Todo = require('./models/Todo');
+let Project = require('./models/Project');
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI, {
@@ -16,8 +17,9 @@ mongoose.connect(process.env.MONGO_URI, {
     console.log('Connected to DB');
 });
 
-console.log('Reading INPUT file');
+console.log('Reading INPUT files');
 // read json files
+let projects = JSON.parse(fs.readFileSync(`${__dirname}/demo/projects.json`,'utf-8'));
 let todos = JSON.parse(fs.readFileSync(`${__dirname}/demo/todos.json`,'utf-8'));
 
 console.log('Done reading INPUT files');
@@ -26,6 +28,7 @@ console.log('Done reading INPUT files');
 let importData = async() => {
     try {
         await Todo.create(todos);
+        await Project.create(projects);
         console.log('Data imported.'.green.inverse);
         process.exit(0);
     } catch (e) {
@@ -36,6 +39,7 @@ let importData = async() => {
 let deleteData = async() => {
     try {
         await Todo.deleteMany();
+        await Project.deleteMany();
         console.log('Data deleted!'.red.inverse);
         process.exit(0);
     } catch (e) {

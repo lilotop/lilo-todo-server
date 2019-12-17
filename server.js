@@ -10,6 +10,7 @@ let cors = require('cors');
 
 // route files
 let todoRoutes = require('./routes/todos');
+let projectRoutes = require('./routes/projects');
 
 // connect to db
 connectDB();
@@ -30,6 +31,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/v1/todos', todoRoutes);
+app.use('/api/v1/projects', projectRoutes);
 
 // error handler
 app.use(errorHandler);

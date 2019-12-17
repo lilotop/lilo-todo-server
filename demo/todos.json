@@ -5,12 +5,14 @@
   },
   {
     "title": "Call mom",
-    "description": "Reminder her about the party"
+    "description": "Reminder her about the party",
+    "project": "5df91ec4ff423d5e285a6557"
   },
   {
     "title": "Schedule the party",
     "priority": 1,
-    "done": true
+    "done": true,
+    "project": "5df91ec4ff423d5e285a6557"
   },
   {
     "title": "Arrange paperwork",
@@ -19,6 +21,11 @@
   },
   {
     "title": "Buy storage boxes",
-    "done": true
+    "done": true,
+    "project": "5df91ec4ff423d5e285a6556"
+  },
+  {
+    "title": "Call the movers",
+    "project": "5df91ec4ff423d5e285a6556"
   }
 ]

@@ -1,12 +1,10 @@
 let mongoose = require('mongoose');
-let slugify = require('slugify');
-
 
 let TodoSchema = mongoose.Schema({
         title: {
             type: String,
             required: [true, 'Please enter a title'],
-            maxlength: [150, 'Name cannot exceed 150 characters']
+            maxlength: [150, 'Title cannot exceed 150 characters']
         },
         description: {
             type: String,
@@ -29,7 +27,13 @@ let TodoSchema = mongoose.Schema({
         modifiedAt: {
             type: Date,
             default: Date.now
+        },
+        project: {
+            type: mongoose.Schema.ObjectId,
+            ref: 'Project',
+            required: false
         }
+
 
     }
 );
