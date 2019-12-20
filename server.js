@@ -5,22 +5,31 @@ let express = require('express');
 let morgan = require('morgan');
 let colors = require('colors');
 let connectDB = require('./config/db');
-let errorHandler = require('./middleware/error');
 let cors = require('cors');
+let cookieParser = require('cookie-parser');
+
+// middleware
+let errorHandler = require('./middleware/error');
+let { protect } = require('./middleware/auth');
 
 // route files
 let todoRoutes = require('./routes/todos');
 let projectRoutes = require('./routes/projects');
+let authRoutes = require('./routes/auth');
 
 // connect to db
 connectDB();
 
 let app = express();
 
+// enable cross origin resource sharing
 app.use(cors());
 
 // enable req.body access
 app.use(express.json());
+
+// enable structured cookie access
+app.use(cookieParser());
 
 // log middleware, only run in dev env
 if (process.env.NODE_ENV === 'development') {
@@ -30,8 +39,10 @@ if (process.env.NODE_ENV === 'development') {
 // setup a folder to be accessible as public (for static assets)
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api/v1/todos', todoRoutes);
-app.use('/api/v1/projects', projectRoutes);
+// setup the routes
+app.use('/api/v1/todos', protect, todoRoutes);
+app.use('/api/v1/projects', protect, projectRoutes);
+app.use('/api/v1/auth', authRoutes);
 
 // error handler
 app.use(errorHandler);
@@ -44,5 +55,5 @@ let server = app.listen(PORT, console.log(`Server running in mode: ${process.env
 process.on('unhandledRejection', err => {
     console.log(`Error: ${err.message}`.red);
     // close server and exit process
-    server.close(()=> process.exit(1));
+    server.close(() => process.exit(1));
 });

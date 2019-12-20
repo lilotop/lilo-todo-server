@@ -10,13 +10,27 @@ let ProjectSchema = mongoose.Schema({
             type: String,
             maxlength: [500, 'Description cannot exceed 500 characters']
         },
+        createdAt: {
+            type: Date,
+            default: Date.now
+        },
+        modifiedAt: {
+            type: Date,
+            default: Date.now
+        },
     }
 );
 
 ProjectSchema.pre('remove', async function(next) {
     // todo - instead of deleting - we should just clear the project field
-    await this.model('Todo').deleteMany({project: this._id});
+    await this.model('Todo').deleteMany({ project: this._id });
     next();
 });
+
+ProjectSchema.pre('save', function(next) {
+    this.modifiedAt = Date.now();
+    next();
+});
+
 
 module.exports = mongoose.model('Project', ProjectSchema);
