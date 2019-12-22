@@ -11,6 +11,7 @@ exports.createTodo = asyncHandler(async (req, res, next) => {
 
     let project = await Project.findById(req.body.project);
     if (project) {
+        req.body.user = req.user._id; // req.user provided by auth/protect middleware
         let todo = await Todo.create(req.body);
         res.status(201).json({ success: true, data: todo });
     } else {

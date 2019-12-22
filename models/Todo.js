@@ -32,9 +32,12 @@ let TodoSchema = mongoose.Schema({
             type: mongoose.Schema.ObjectId,
             ref: 'Project',
             required: false
+        },
+        user: {
+            type: mongoose.Schema.ObjectId,
+            ref: 'User',
+            required: true
         }
-
-
     }
 );
 

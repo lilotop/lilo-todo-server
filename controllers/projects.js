@@ -7,6 +7,7 @@ exports.getProjects = asyncHandler(async (req, res, next) => {
 });
 
 exports.createProject = asyncHandler(async (req, res, next) => {
+    req.body.user = req.user._id; // req.user provided by auth/protect middleware
     let project = await Project.create(req.body);
     res.status(201).json({ success: true, data: project });
 });

@@ -1,3 +1,4 @@
+let userFilter = require('../utils/userFilter');
 let advancedResults = (model) => async (req,res, next) => {
 
     // copy the query params object
@@ -21,7 +22,7 @@ let advancedResults = (model) => async (req,res, next) => {
     reqQuery = JSON.parse(queryString);
 
     // create the query
-    let query = model.find(reqQuery);
+    let query = userFilter(model.find(reqQuery), req);
 
     // select fields to include (note that we use the original req.query here)
     if(req.query.select) {

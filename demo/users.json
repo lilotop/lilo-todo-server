@@ -1,0 +1,14 @@
+[
+  {
+    "_id": "5dfe55a6d532615d04f4a925",
+    "name": "red",
+    "email": "red@lilotop.com",
+    "password": "123456"
+  },
+  {
+    "_id": "5dfe55a6d532615d04f4a926",
+    "name": "blue",
+    "email": "blue@lilotop.com",
+    "password": "123456"
+  }
+]
