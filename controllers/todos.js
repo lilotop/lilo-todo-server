@@ -1,5 +1,4 @@
 let Todo = require('../models/Todo');
-let Project = require('../models/Project');
 let ErrorResponse = require('../utils/errorResponse');
 let asyncHandler = require('../middleware/async');
 
@@ -8,18 +7,9 @@ exports.getTodos = asyncHandler(async (req, res, next) => {
 });
 
 exports.createTodo = asyncHandler(async (req, res, next) => {
-
-    let project = await Project.findById(req.body.project);
-    if (project) {
-        req.body.user = req.user._id; // req.user provided by auth/protect middleware
-        let todo = await Todo.create(req.body);
-        res.status(201).json({ success: true, data: todo });
-    } else {
-        throw new ErrorResponse('No such project. check the project id', 404);
-    }
-
-
-
+    req.body.user = req.user._id; // req.user provided by auth/protect middleware
+    let todo = await Todo.create(req.body);
+    res.status(201).json({ success: true, data: todo });
 });
 
 exports.getTodo = asyncHandler(async (req, res, next) => {
