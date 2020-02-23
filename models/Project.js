@@ -4,7 +4,8 @@ let ProjectSchema = mongoose.Schema({
         name: {
             type: String,
             required: [true, 'Please enter a project name'],
-            maxlength: [150, 'Name cannot exceed 150 characters']
+            maxlength: [150, 'Name cannot exceed 150 characters'],
+            unique: true,
         },
         description: {
             type: String,
