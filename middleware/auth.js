@@ -23,6 +23,9 @@ exports.protect = asyncHandler(async (req, res, next) => {
         let decoded = jwt.verify(token, process.env.JWT_SECRET);
         console.log(decoded);
         req.user = await User.findById(decoded.id);
+        if(!req.user){
+            return next(new ErrorResponse(`User with id ${decoded.id} was not found in DB`, 401));
+        }
         next();
     }
     catch (err) {
