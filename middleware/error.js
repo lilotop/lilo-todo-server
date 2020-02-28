@@ -1,5 +1,5 @@
 let errorHandler = (err, req, res, next) => {
-    console.log(err.stack.red); // (using colors.js extension)
+    console.log(err.stack ? err.stack.red : err.red); // (using colors.js extension)
     let errorCategory;
     if (err.name === 'ValidationError') {
         err.statusCode = 400;

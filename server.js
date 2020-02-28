@@ -8,6 +8,10 @@ let connectDB = require('./config/db');
 let cors = require('cors');
 let cookieParser = require('cookie-parser');
 
+// setup sentry monitoring
+const Sentry = require('@sentry/node');
+Sentry.init({ dsn: 'https://a095458261174c5c984aef9ec73dfcd0@sentry.io/3112660' });
+
 // middleware
 let errorHandler = require('./middleware/error');
 let { protect } = require('./middleware/auth');
@@ -54,6 +58,4 @@ let server = app.listen(PORT, console.log(`Server running in mode: ${process.env
 // handle errors
 process.on('unhandledRejection', err => {
     console.log(`Error: ${err.message}`.red);
-    // close server and exit process
-    server.close(() => process.exit(1));
 });
